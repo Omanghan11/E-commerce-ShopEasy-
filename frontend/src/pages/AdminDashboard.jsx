@@ -1989,7 +1989,7 @@ const AdminDashboard = () => {
                             handleViewProduct={handleViewProduct}
                             handleEditProduct={handleEditProduct}
                             handleDeleteProduct={handleDeleteProduct}
-                            categories={categories.length > 0 ? categories : staticCategories.map(name => ({ name }))}
+                            categories={categories.length > 0 ? categories.map(cat => cat.name) : staticCategories}
                             brands={brands}
                             newProduct={newProduct}
                             setNewProduct={setNewProduct}
