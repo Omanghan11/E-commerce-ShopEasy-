@@ -107,8 +107,8 @@ app.get("/test-image", (req, res) => {
   }
 });
 
-// ✅ Connect DB and start server
-if (process.env.NODE_ENV !== 'production') {
+// ✅ Connect DB and start server (only for local development)
+if (process.env.VERCEL !== '1') {
   connectDB(process.env.MONGODB_URI)
     .then(() => {
       app.listen(port, () => {
@@ -128,9 +128,6 @@ if (process.env.NODE_ENV !== 'production') {
       collections.map((c) => c.name)
     );
   });
-} else {
-  // For Vercel serverless, connect to DB on each request
-  connectDB(process.env.MONGODB_URI).catch((err) => console.error("❌ DB connection error:", err));
 }
 
 // Export for Vercel serverless
