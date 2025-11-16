@@ -3,7 +3,7 @@ import { useProductContext } from "../Context/ProductContext";
 import { useNavigate, Link } from "react-router-dom";
 import { FaHeart, FaShoppingCart, FaRegHeart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import defaultImage from "../assets/Images/default-placeholder-image.jpg";
-import ProductFilter from "../components/ProductFilter";
+import ProductFilter from "../Components/ProductFilter";
 
 function ProductsPage() {
   const { addToCart, addToWishlist, isInCart, isInWishlist } = useProductContext();
