@@ -93,7 +93,7 @@ const ProfilePage = () => {
     const fetchUserData = async () => {
       try {
         if (token) {
-          const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/me', {
+          const response = await fetch('https://shopeasy-backend-sagk.onrender.com/api/auth/me', {
             headers: {
               'Authorization': `Bearer ${token}`
             }
@@ -148,7 +148,7 @@ const ProfilePage = () => {
           throw new Error('No authentication token found');
         }
 
-        const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/orders', {
+        const response = await fetch('https://shopeasy-backend-sagk.onrender.com/api/orders', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -250,7 +250,7 @@ const ProfilePage = () => {
         return;
       }
 
-      const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/password', {
+      const response = await fetch('https://shopeasy-backend-sagk.onrender.com/api/auth/password', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -292,7 +292,7 @@ const ProfilePage = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/addresses', {
+      const response = await fetch('https://shopeasy-backend-sagk.onrender.com/api/auth/addresses', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -319,8 +319,8 @@ const ProfilePage = () => {
       }
 
       const url = editingAddress 
-        ? `${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/addresses/${editingAddress._id}`
-        : '${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/addresses';
+        ? `https://shopeasy-backend-sagk.onrender.com/api/auth/addresses/${editingAddress._id}`
+        : 'https://shopeasy-backend-sagk.onrender.com/api/auth/addresses';
       
       const method = editingAddress ? 'PUT' : 'POST';
 
@@ -384,7 +384,7 @@ const ProfilePage = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/addresses/${addressToDelete._id}`, {
+      const response = await fetch(`https://shopeasy-backend-sagk.onrender.com/api/auth/addresses/${addressToDelete._id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`
@@ -427,7 +427,7 @@ const ProfilePage = () => {
       const token = localStorage.getItem('token');
       if (!token) return;
 
-      const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/tickets/my-tickets', {
+      const response = await fetch('https://shopeasy-backend-sagk.onrender.com/api/tickets/my-tickets', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -451,7 +451,7 @@ const ProfilePage = () => {
     setSubmittingTicket(true);
     try {
       const user = JSON.parse(localStorage.getItem('currentUser') || '{}');
-      const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/tickets/create', {
+      const response = await fetch('https://shopeasy-backend-sagk.onrender.com/api/tickets/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -483,7 +483,7 @@ const ProfilePage = () => {
   const handleViewTicket = async (ticket) => {
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/tickets/${ticket._id}`, {
+      const response = await fetch(`https://shopeasy-backend-sagk.onrender.com/api/tickets/${ticket._id}`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -504,7 +504,7 @@ const ProfilePage = () => {
     setSubmittingTicket(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/tickets/${selectedTicket._id}/message`, {
+      const response = await fetch(`https://shopeasy-backend-sagk.onrender.com/api/tickets/${selectedTicket._id}/message`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -542,7 +542,7 @@ const ProfilePage = () => {
         return;
       }
 
-      const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/profile', {
+      const response = await fetch('https://shopeasy-backend-sagk.onrender.com/api/auth/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -1883,4 +1883,5 @@ const ProfilePage = () => {
 };
 
 export default ProfilePage;
+
 

@@ -1,5 +1,5 @@
 // API Configuration
-export const API_BASE_URL = import.meta.env.VITE_API_URL || '${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}';
+export const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://shopeasy-backend-sagk.onrender.com';
 
 export const API_ENDPOINTS = {
   // Auth
@@ -33,5 +33,6 @@ export const API_ENDPOINTS = {
   // Discounts
   DISCOUNTS: `${API_BASE_URL}/api/discounts`,
 };
+
 
 

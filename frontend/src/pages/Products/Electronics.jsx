@@ -22,7 +22,7 @@ function Electronics() {
     const fetchProducts = async () => {
       try {
         console.log('Fetching Electronics products...');
-        const res = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/products?category=Electronics');
+        const res = await fetch('https://shopeasy-backend-sagk.onrender.com/api/products?category=Electronics');
         console.log('Electronics fetch response:', res.status, res.statusText);
         if (!res.ok) throw new Error("Failed to fetch products");
         const data = await res.json();
@@ -278,5 +278,6 @@ function Electronics() {
 }
 
 export default Electronics;
+
 
 

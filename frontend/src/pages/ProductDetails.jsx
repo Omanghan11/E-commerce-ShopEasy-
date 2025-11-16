@@ -53,7 +53,7 @@ function ProductDetails() {
       if (product) return;
 
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/products/id/${id}`);
+        const response = await fetch(`https://shopeasy-backend-sagk.onrender.com/api/products/id/${id}`);
         if (!response.ok) throw new Error("Product not found");
         const data = await response.json();
         console.log('Product data received:', data);
@@ -155,8 +155,8 @@ function ProductDetails() {
       }
 
       const url = editingReview
-        ? `${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/products/${product._id}/reviews/${editingReview._id}`
-        : `${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/products/${product._id}/reviews`;
+        ? `https://shopeasy-backend-sagk.onrender.com/api/products/${product._id}/reviews/${editingReview._id}`
+        : `https://shopeasy-backend-sagk.onrender.com/api/products/${product._id}/reviews`;
 
       const method = editingReview ? "PUT" : "POST";
 
@@ -201,7 +201,7 @@ function ProductDetails() {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/products/${product._id}/reviews/${reviewId}`, {
+      const response = await fetch(`https://shopeasy-backend-sagk.onrender.com/api/products/${product._id}/reviews/${reviewId}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -630,4 +630,5 @@ function ProductDetails() {
 }
 
 export default ProductDetails;
+
 

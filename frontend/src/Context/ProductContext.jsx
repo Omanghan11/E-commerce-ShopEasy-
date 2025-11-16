@@ -12,7 +12,7 @@ export const useProductContext = () => {
 
 export const ProductProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cartReducer, initialState);
-  const API_URL = "${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api";
+  const API_URL = "https://shopeasy-backend-sagk.onrender.com/api";
 
   // -------- LOAD CART & WISHLIST FROM BACKEND --------
   useEffect(() => {
@@ -197,5 +197,6 @@ export const ProductProvider = ({ children }) => {
     </ProductContext.Provider>
   );
 };
+
 
 

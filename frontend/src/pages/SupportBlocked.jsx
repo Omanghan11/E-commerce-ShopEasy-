@@ -56,7 +56,7 @@ function SupportBlocked() {
 
     const checkExistingTicket = async (email) => {
         try {
-            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/tickets/blocked-user-ticket?email=${encodeURIComponent(email)}`);
+            const response = await fetch(`https://shopeasy-backend-sagk.onrender.com/api/tickets/blocked-user-ticket?email=${encodeURIComponent(email)}`);
 
             if (response.ok) {
                 const data = await response.json();
@@ -98,7 +98,7 @@ function SupportBlocked() {
 
         setSubmitting(true);
         try {
-            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/tickets/create', {
+            const response = await fetch('https://shopeasy-backend-sagk.onrender.com/api/tickets/create', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -310,4 +310,5 @@ function SupportBlocked() {
 }
 
 export default SupportBlocked;
+
 

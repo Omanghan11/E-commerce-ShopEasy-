@@ -60,7 +60,7 @@ function Checkout() {
         const token = localStorage.getItem('token');
         if (!token) return;
 
-        const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/addresses', {
+        const response = await fetch('https://shopeasy-backend-sagk.onrender.com/api/auth/addresses', {
           headers: {
             'Authorization': `Bearer ${token}`
           }
@@ -128,7 +128,7 @@ function Checkout() {
 
     setCouponLoading(true);
     try {
-      const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/discounts/coupons/validate', {
+      const response = await fetch('https://shopeasy-backend-sagk.onrender.com/api/discounts/coupons/validate', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -237,7 +237,7 @@ function Checkout() {
         paymentMethod
       };
 
-      const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/checkout', {
+      const response = await fetch('https://shopeasy-backend-sagk.onrender.com/api/checkout', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -682,4 +682,5 @@ function Checkout() {
 }
 
 export default Checkout;
+
 
