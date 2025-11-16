@@ -23,7 +23,7 @@ import ProductPage from './pages/ProductPage';
 import SearchPage from './pages/SearchPage';
 import AdminDashboard from './pages/AdminDashboard';
 import SupportBlocked from './pages/SupportBlocked';
-import ErrorBoundary from './components/ErrorBoundary';
+import ErrorBoundary from './Components/ErrorBoundary';
 import { NotificationProvider } from './Context/NotificationContext';
 
 
