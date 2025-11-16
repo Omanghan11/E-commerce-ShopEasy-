@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import MobileImage from "../../assets/Images/MobileImage.jpg";
 import { FaHeart, FaShoppingCart, FaRegHeart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { useProductContext } from "../../Context/ProductContext";
-import ProductFilter from "../../components/ProductFilter";
+import ProductFilter from "../../Components/ProductFilter";
 
 function Mobile() {
   const navigate = useNavigate();

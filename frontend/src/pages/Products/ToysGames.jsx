@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useProductContext } from "../../Context/ProductContext";
 import { FaHeart, FaShoppingCart, FaRegHeart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import ToysBanner from "../../assets/Images/Toys.jpg";
-import ProductFilter from "../../components/ProductFilter";
+import ProductFilter from "../../Components/ProductFilter";
 
 function ToysGames() {
   const navigate = useNavigate();

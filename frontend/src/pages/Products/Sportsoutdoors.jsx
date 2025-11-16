@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaHeart, FaShoppingCart, FaRegHeart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { useProductContext } from "../../Context/ProductContext";
 import SportsBanner from "../../assets/Images/Sports.jpg";
-import ProductFilter from "../../components/ProductFilter";
+import ProductFilter from "../../Components/ProductFilter";
 
 function Sportsoutdoors() {
   const navigate = useNavigate();

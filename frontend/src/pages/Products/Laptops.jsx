@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FaHeart, FaShoppingCart, FaRegHeart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { useProductContext } from "../../Context/ProductContext";
 import LaptopImage from "../../assets/Images/LaptopImage.avif";
-import ProductFilter from "../../components/ProductFilter";
+import ProductFilter from "../../Components/ProductFilter";
 
 function Laptops() {
   const navigate = useNavigate();

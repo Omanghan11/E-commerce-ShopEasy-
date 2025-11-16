@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import GroceryImage from "../../assets/Images/GroceryImage.jpg";
 import { useProductContext } from "../../Context/ProductContext";
 import { FaHeart, FaShoppingCart, FaRegHeart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-import ProductFilter from "../../components/ProductFilter";
+import ProductFilter from "../../Components/ProductFilter";
 
 function Grocery() {
   const navigate = useNavigate();
