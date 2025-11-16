@@ -1,34 +1,12 @@
 {
-  "version": 2,
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
-  "installCommand": "npm install && cd backend/server && npm install && cd ../../frontend && npm install",
-  "builds": [
+  "installCommand": "npm install",
+  "framework": "vite",
+  "rewrites": [
     {
-      "src": "backend/server/src/server.js",
-      "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "backend/server/src/server.js"
-    },
-    {
-      "src": "/uploads/(.*)",
-      "dest": "backend/server/src/server.js"
-    },
-    {
-      "src": "/images/(.*)",
-      "dest": "backend/server/src/server.js"
-    },
-    {
-      "src": "/(.*\\..+)",
-      "dest": "frontend/dist/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontend/dist/index.html"
+      "source": "/api/(.*)",
+      "destination": "/api"
     }
   ]
 }
