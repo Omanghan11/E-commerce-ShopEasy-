@@ -108,22 +108,30 @@ app.get("/test-image", (req, res) => {
 });
 
 // ✅ Connect DB and start server
-connectDB(process.env.MONGODB_URI)
-  .then(() => {
-    app.listen(port, () => {
-      console.log(`✅ Server running at http://localhost:${port}`);
-    });
-  })
-  .catch((err) => console.error("❌ DB connection error:", err));
+if (process.env.NODE_ENV !== 'production') {
+  connectDB(process.env.MONGODB_URI)
+    .then(() => {
+      app.listen(port, () => {
+        console.log(`✅ Server running at http://localhost:${port}`);
+      });
+    })
+    .catch((err) => console.error("❌ DB connection error:", err));
 
-// ✅ Log available collections once DB is connected
-mongoose.connection.once("open", async () => {
-  console.log("✅ Connected to DB:", mongoose.connection.name);
-  const collections = await mongoose.connection.db
-    .listCollections()
-    .toArray();
-  console.log(
-    "✅ Available collections:",
-    collections.map((c) => c.name)
-  );
-});
+  // ✅ Log available collections once DB is connected
+  mongoose.connection.once("open", async () => {
+    console.log("✅ Connected to DB:", mongoose.connection.name);
+    const collections = await mongoose.connection.db
+      .listCollections()
+      .toArray();
+    console.log(
+      "✅ Available collections:",
+      collections.map((c) => c.name)
+    );
+  });
+} else {
+  // For Vercel serverless, connect to DB on each request
+  connectDB(process.env.MONGODB_URI).catch((err) => console.error("❌ DB connection error:", err));
+}
+
+// Export for Vercel serverless
+export default app;
