@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
-import ProductFilter from "../components/ProductFilter";
+import ProductFilter from "../Components/ProductFilter";
 import { FaHeart, FaShoppingCart, FaRegHeart, FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { useProductContext } from "../Context/ProductContext";
 
