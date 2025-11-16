@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Dialog from '../components/Dialog';
+import Dialog from '../Components/Dialog';
 import { useDialog } from '../hooks/useDialog';
 import {
     FaUsers,

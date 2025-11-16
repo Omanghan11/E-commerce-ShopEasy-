@@ -4,7 +4,7 @@ import { useProductContext } from "../Context/ProductContext";
 import { FaShoppingCart, FaBolt, FaStar, FaStarHalfAlt, FaRegStar, FaUser, FaEdit, FaTrash } from "react-icons/fa";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import Dialog from '../components/Dialog';
+import Dialog from '../Components/Dialog';
 import { useDialog } from '../hooks/useDialog';
 import "swiper/css";
 import "swiper/css/navigation";

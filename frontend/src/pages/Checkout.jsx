@@ -4,7 +4,7 @@ import CheckoutImage from '../assets/Images/CheckoutImage.jpg';
 import defaultImage from '../assets/Images/default-placeholder-image.jpg';
 import { useProductContext } from '../Context/ProductContext';
 import { useNotifications } from '../Context/NotificationContext';
-import Dialog from '../components/Dialog';
+import Dialog from '../Components/Dialog';
 import { useDialog } from '../hooks/useDialog';
 
 function Checkout() {
