@@ -25,7 +25,7 @@ function Grocery() {
     const fetchProducts = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/products?category=GroceryGourmetFood"
+          "${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/products?category=GroceryGourmetFood"
         );
         if (!res.ok) throw new Error("Failed to fetch products");
         const data = await res.json();
@@ -269,3 +269,5 @@ function Grocery() {
 }
 
 export default Grocery;
+
+

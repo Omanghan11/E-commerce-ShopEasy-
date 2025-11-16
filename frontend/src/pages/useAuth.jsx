@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
       }
 
       try {
-        const res = await fetch("http://localhost:5000/api/auth/me", {
+        const res = await fetch("${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/me", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -66,3 +66,5 @@ export const AuthProvider = ({ children }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+
+

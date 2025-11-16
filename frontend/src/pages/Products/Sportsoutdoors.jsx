@@ -24,7 +24,7 @@ function Sportsoutdoors() {
     const fetchSports = async () => {
       try {
         const res = await fetch(
-          "http://localhost:5000/api/products?category=SportsOutdoors"
+          "${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/products?category=SportsOutdoors"
         );
         if (!res.ok) throw new Error("Failed to fetch products");
         const data = await res.json();
@@ -275,3 +275,5 @@ function Sportsoutdoors() {
 }
 
 export default Sportsoutdoors;
+
+

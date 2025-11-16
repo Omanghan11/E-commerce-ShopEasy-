@@ -72,7 +72,7 @@ function Login() {
     setIsResetting(true);
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/forgot-password", {
+      const response = await fetch("${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/forgot-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -133,8 +133,8 @@ function Login() {
       if (isLogin) {
         // ✅ LOGIN
         const loginEndpoint = isAdminLogin ? 
-          "http://localhost:5000/api/auth/admin-login" : 
-          "http://localhost:5000/api/auth/login";
+          "${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/admin-login" : 
+          "${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/login";
           
         response = await fetch(loginEndpoint, {
           method: "POST",
@@ -153,7 +153,7 @@ function Login() {
           return;
         }
 
-        response = await fetch("http://localhost:5000/api/auth/register", {
+        response = await fetch("${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/register", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -488,3 +488,4 @@ function Login() {
 }
 
 export default Login;
+

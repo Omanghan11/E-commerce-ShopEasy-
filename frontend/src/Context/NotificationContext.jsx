@@ -46,7 +46,7 @@ export const NotificationProvider = ({ children }) => {
     setLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch('http://localhost:5000/api/auth/notifications', {
+      const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/notifications', {
         headers: { 'Authorization': `Bearer ${token}` }
       });
 
@@ -88,7 +88,7 @@ export const NotificationProvider = ({ children }) => {
       // Optionally call backend to mark as read
       try {
         const token = localStorage.getItem('token');
-        await fetch(`http://localhost:5000/api/auth/notifications/${notificationId}/read`, {
+        await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/auth/notifications/${notificationId}/read`, {
           method: 'PUT',
           headers: { 'Authorization': `Bearer ${token}` }
         });
@@ -182,3 +182,4 @@ export const NotificationProvider = ({ children }) => {
     </NotificationContext.Provider>
   );
 };
+

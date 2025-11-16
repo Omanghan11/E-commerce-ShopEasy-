@@ -23,7 +23,7 @@ function BeautyHealth() {
 
     const fetchProducts = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/products?category=BeautyHealth");
+        const res = await fetch("${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/products?category=BeautyHealth");
         if (!res.ok) throw new Error("Failed to fetch beauty products");
         const data = await res.json();
         const productsArray = data.products || data || [];
@@ -267,3 +267,5 @@ function BeautyHealth() {
 }
 
 export default BeautyHealth;
+
+

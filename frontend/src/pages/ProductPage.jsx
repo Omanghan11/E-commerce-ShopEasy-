@@ -26,7 +26,7 @@ function ProductsPage() {
   const fetchProducts = async (page = 1) => {
     try {
       setLoading(true);
-      const response = await fetch(`http://localhost:5000/api/products?page=${page}&limit=${productsPerPage}`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/products?page=${page}&limit=${productsPerPage}`);
       if (!response.ok) throw new Error("Failed to fetch products");
       const data = await response.json();
       setProducts(data.products || []);
@@ -323,3 +323,4 @@ function ProductsPage() {
 }
 
 export default ProductsPage;
+

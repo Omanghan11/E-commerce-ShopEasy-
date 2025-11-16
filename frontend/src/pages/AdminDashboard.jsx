@@ -218,7 +218,7 @@ const AdminDashboard = () => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
             const searchParam = searchTerm ? `&search=${encodeURIComponent(searchTerm)}` : '';
-            const response = await fetch(`http://localhost:5000/api/admin/products?limit=10000${searchParam}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/products?limit=10000${searchParam}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -244,37 +244,37 @@ const AdminDashboard = () => {
 
             // Fetch stats, users, products, orders, tickets, notifications, analytics, categories, brands, discounts, coupons
             const [statsRes, usersRes, productsRes, ordersRes, ticketsRes, notificationsRes, analyticsRes, categoriesRes, brandsRes, discountsRes, couponsRes] = await Promise.all([
-                fetch('http://localhost:5000/api/admin/stats', {
+                fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/stats', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch('http://localhost:5000/api/admin/users', {
+                fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/users', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch(`http://localhost:5000/api/admin/products?page=${currentPage}&limit=20`, {
+                fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/products?page=${currentPage}&limit=20`, {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch('http://localhost:5000/api/admin/orders', {
+                fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/orders', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch('http://localhost:5000/api/admin/tickets', {
+                fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/tickets', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch('http://localhost:5000/api/admin/notifications', {
+                fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/notifications', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch('http://localhost:5000/api/admin/analytics', {
+                fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/analytics', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch('http://localhost:5000/api/categories/admin?limit=1000', {
+                fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/categories/admin?limit=1000', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch('http://localhost:5000/api/brands/admin', {
+                fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/brands/admin', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch('http://localhost:5000/api/admin/discounts', {
+                fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/discounts', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 }),
-                fetch('http://localhost:5000/api/admin/coupons', {
+                fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/coupons', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 })
             ]);
@@ -331,7 +331,7 @@ const AdminDashboard = () => {
                 console.error('Failed to fetch categories:', categoriesRes.status, categoriesRes.statusText);
                 // Try to fetch from public endpoint as fallback
                 try {
-                    const publicCategoriesRes = await fetch('http://localhost:5000/api/categories');
+                    const publicCategoriesRes = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/categories');
                     if (publicCategoriesRes.ok) {
                         const publicCategoriesData = await publicCategoriesRes.json();
                         console.log('Public categories data:', publicCategoriesData);
@@ -407,7 +407,7 @@ const AdminDashboard = () => {
             const statusParam = filters.status ? `&status=${encodeURIComponent(filters.status)}` : '';
             const lowStockParam = filters.lowStock ? '&lowStock=true' : '';
             
-            const response = await fetch(`http://localhost:5000/api/admin/products?page=${page}&limit=20${searchParam}${categoryParam}${statusParam}${lowStockParam}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/products?page=${page}&limit=20${searchParam}${categoryParam}${statusParam}${lowStockParam}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -494,7 +494,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/users/${editingUser.id || editingUser._id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/users/${editingUser.id || editingUser._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -537,7 +537,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/users/${userId}/unblock`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/users/${userId}/unblock`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -569,7 +569,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/users/${blockingUser.id || blockingUser._id}/block`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/users/${blockingUser.id || blockingUser._id}/block`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -610,7 +610,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/users/${userId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/users/${userId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -642,7 +642,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch('http://localhost:5000/api/admin/users', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -672,7 +672,7 @@ const AdminDashboard = () => {
     const refreshUsers = async () => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch('http://localhost:5000/api/admin/users', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/users', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -689,7 +689,7 @@ const AdminDashboard = () => {
     const refreshDiscounts = async () => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch('http://localhost:5000/api/admin/discounts', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/discounts', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -711,7 +711,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch('http://localhost:5000/api/admin/discounts', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/discounts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -781,7 +781,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/discounts/${editingDiscount._id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/discounts/${editingDiscount._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -835,7 +835,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/discounts/${discountId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/discounts/${discountId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -863,7 +863,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/discounts/${discountId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/discounts/${discountId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -892,7 +892,7 @@ const AdminDashboard = () => {
     const refreshCoupons = async () => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch('http://localhost:5000/api/admin/coupons', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/coupons', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -923,7 +923,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch('http://localhost:5000/api/admin/coupons', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/coupons', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -995,7 +995,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/coupons/${editingCoupon._id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/coupons/${editingCoupon._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1050,7 +1050,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/coupons/${couponId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/coupons/${couponId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -1078,7 +1078,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/coupons/${couponId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/coupons/${couponId}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1107,7 +1107,7 @@ const AdminDashboard = () => {
     const refreshTickets = async () => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch('http://localhost:5000/api/admin/tickets', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/tickets', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -1123,7 +1123,7 @@ const AdminDashboard = () => {
     const handleViewTicket = async (ticket) => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/tickets/${ticket._id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/tickets/${ticket._id}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -1141,7 +1141,7 @@ const AdminDashboard = () => {
     const handleTicketStatusChange = async (ticketId, newStatus) => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/tickets/${ticketId}/status`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/tickets/${ticketId}/status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1174,7 +1174,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/tickets/${selectedTicket._id}/reply`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/tickets/${selectedTicket._id}/reply`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1208,7 +1208,7 @@ const AdminDashboard = () => {
     const handleViewOrder = async (orderId) => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/orders/${orderId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/orders/${orderId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -1228,7 +1228,7 @@ const AdminDashboard = () => {
     const handleEditOrder = async (orderId) => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/orders/${orderId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/orders/${orderId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -1249,7 +1249,7 @@ const AdminDashboard = () => {
         setSubmitting(true);
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/orders/${orderId}/status`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/orders/${orderId}/status`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1280,7 +1280,7 @@ const AdminDashboard = () => {
     const handleViewProduct = async (productId) => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/products/${productId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/products/${productId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -1303,7 +1303,7 @@ const AdminDashboard = () => {
     const handleEditProduct = async (productId) => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/products/${productId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/products/${productId}`, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -1357,7 +1357,7 @@ const AdminDashboard = () => {
                 }
             });
 
-            const response = await fetch(`http://localhost:5000/api/admin/products/${editingProduct?.id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/products/${editingProduct?.id}`, {
                 method: 'PUT',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -1398,7 +1398,7 @@ const AdminDashboard = () => {
     const handleDeleteProduct = async (productId) => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch(`http://localhost:5000/api/admin/products/${productId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/products/${productId}`, {
                 method: 'DELETE',
                 headers: { 'Authorization': `Bearer ${token}` }
             });
@@ -1467,7 +1467,7 @@ const AdminDashboard = () => {
                 }
             });
 
-            const response = await fetch('http://localhost:5000/api/products/admin', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/products/admin', {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -1521,7 +1521,7 @@ const AdminDashboard = () => {
             setSubmitting(true);
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
 
-            const response = await fetch('http://localhost:5000/api/categories/admin', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/categories/admin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1565,7 +1565,7 @@ const AdminDashboard = () => {
             setSubmitting(true);
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
 
-            const response = await fetch(`http://localhost:5000/api/categories/admin/${editingCategory._id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/categories/admin/${editingCategory._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1595,7 +1595,7 @@ const AdminDashboard = () => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
 
-            const response = await fetch(`http://localhost:5000/api/categories/admin/${categoryId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/categories/admin/${categoryId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -1618,7 +1618,7 @@ const AdminDashboard = () => {
     const refreshCategories = async () => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch('http://localhost:5000/api/categories/admin', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/categories/admin', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -1642,7 +1642,7 @@ const AdminDashboard = () => {
             setSubmitting(true);
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
 
-            const response = await fetch('http://localhost:5000/api/brands/admin', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/brands/admin', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1689,7 +1689,7 @@ const AdminDashboard = () => {
             setSubmitting(true);
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
 
-            const response = await fetch(`http://localhost:5000/api/brands/admin/${editingBrand._id}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/brands/admin/${editingBrand._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1719,7 +1719,7 @@ const AdminDashboard = () => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
 
-            const response = await fetch(`http://localhost:5000/api/brands/admin/${brandId}`, {
+            const response = await fetch(`${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/brands/admin/${brandId}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`
@@ -1742,7 +1742,7 @@ const AdminDashboard = () => {
     const refreshBrands = async () => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch('http://localhost:5000/api/brands/admin', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/brands/admin', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
 
@@ -1787,7 +1787,7 @@ const AdminDashboard = () => {
     const fetchActiveDiscounts = async () => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch('http://localhost:5000/api/admin/active-discounts', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/active-discounts', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (response.ok) {
@@ -1802,7 +1802,7 @@ const AdminDashboard = () => {
     const fetchActiveCoupons = async () => {
         try {
             const token = localStorage.getItem('token') || sessionStorage.getItem('authToken');
-            const response = await fetch('http://localhost:5000/api/admin/active-coupons', {
+            const response = await fetch('${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/api/admin/active-coupons', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             if (response.ok) {
@@ -3744,12 +3744,12 @@ const ViewProductModal = ({ product, onClose }) => (
                                     if (imagePath.startsWith('http')) {
                                         imageUrl = imagePath;
                                     } else if (imagePath.startsWith('/uploads')) {
-                                        imageUrl = `http://localhost:5000${imagePath}`;
+                                        imageUrl = `${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}${imagePath}`;
                                     } else if (imagePath.startsWith('/images')) {
                                         // Existing products served from frontend public directory
                                         imageUrl = `http://localhost:5173${imagePath}`;
                                     } else {
-                                        imageUrl = `http://localhost:5000/uploads/products/${imagePath}`;
+                                        imageUrl = `${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/uploads/products/${imagePath}`;
                                     }
                                     console.log(`Image ${index + 1} URL:`, imageUrl);
                                     console.log(`Image ${index + 1} raw path:`, image);
@@ -3791,9 +3791,9 @@ const ViewProductModal = ({ product, onClose }) => (
                                     } else if (mainImage.startsWith('/images')) {
                                         mainImageUrl = `http://localhost:5173${mainImage}`;
                                     } else if (mainImage.startsWith('/uploads')) {
-                                        mainImageUrl = `http://localhost:5000${mainImage}`;
+                                        mainImageUrl = `${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}${mainImage}`;
                                     } else if (mainImage) {
-                                        mainImageUrl = `http://localhost:5000/uploads/products/${mainImage}`;
+                                        mainImageUrl = `${import.meta.env.VITE_API_URL || "https://shopeasy-backend-sagk.onrender.com"}/uploads/products/${mainImage}`;
                                     } else {
                                         mainImageUrl = 'https://via.placeholder.com/300x300?text=No+Image';
                                     }
@@ -6598,3 +6598,4 @@ const DiscountManagementContent = ({
 };
 
 export default AdminDashboard;
+
