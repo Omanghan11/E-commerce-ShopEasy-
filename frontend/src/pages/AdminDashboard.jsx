@@ -1864,6 +1864,65 @@ const AdminDashboard = () => {
                     <p className="text-blue-100 text-sm mt-1">Management Dashboard</p>
                 </div>
 
+                {/* Notification and Admin User Section */}
+                <div className="p-4 border-b border-gray-200 bg-gray-50">
+                    <div className="flex items-center justify-between mb-3">
+                        <div className="relative">
+                            <button
+                                onClick={() => setShowNotifications(!showNotifications)}
+                                className="p-2 text-gray-600 hover:text-gray-800 hover:bg-white rounded-full transition-colors duration-200 relative"
+                            >
+                                <FaBell className="w-5 h-5" />
+                                {notifications.length > 0 && (
+                                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                                        {notifications.length}
+                                    </span>
+                                )}
+                            </button>
+
+                            {showNotifications && (
+                                <div className="absolute left-0 mt-2 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 max-w-[calc(100vw-2rem)]">
+                                    <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+                                        <h3 className="font-semibold text-gray-800">Notifications</h3>
+                                    </div>
+                                    <div className="p-4 space-y-3 max-h-64 overflow-y-auto">
+                                        {notifications.length === 0 ? (
+                                            <div className="text-center py-4 text-gray-500">
+                                                <FaBell className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                                                <p className="text-sm">No new notifications</p>
+                                            </div>
+                                        ) : (
+                                            notifications.map((notification) => (
+                                                <NotificationItem
+                                                    key={notification.id}
+                                                    color={
+                                                        notification.type === 'success' ? 'green' :
+                                                            notification.type === 'warning' ? 'yellow' :
+                                                                notification.type === 'error' ? 'red' : 'blue'
+                                                    }
+                                                    title={notification.title}
+                                                    message={notification.message}
+                                                    time={new Date(notification.timestamp).toLocaleString()}
+                                                />
+                                            ))
+                                        )}
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="flex items-center space-x-3 bg-white px-3 py-2 rounded-lg">
+                        <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <FaUserShield className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                            <p className="text-sm font-medium text-gray-800">Admin User</p>
+                            <p className="text-xs text-gray-500">Administrator</p>
+                        </div>
+                    </div>
+                </div>
+
                 <nav className="flex-1 overflow-y-auto mt-6 px-4 pb-4">
                     {sidebarItems.map((item) => {
                         const Icon = item.icon;
@@ -1898,64 +1957,6 @@ const AdminDashboard = () => {
             <div className="flex-1 flex flex-col w-full min-w-0">
                 {/* Enhanced Header */}
                 <header className="bg-white shadow-sm border-b border-gray-200 px-4 sm:px-6 py-4">
-                    {/* Top Row: Notifications and Admin User */}
-                    <div className="flex items-center justify-end space-x-2 sm:space-x-4 mb-4">
-                            <div className="relative">
-                                <button
-                                    onClick={() => setShowNotifications(!showNotifications)}
-                                    className="p-2 sm:p-3 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors duration-200 relative"
-                                >
-                                    <FaBell className="w-4 h-4 sm:w-5 sm:h-5" />
-                                    {notifications.length > 0 && (
-                                        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center animate-pulse text-[10px] sm:text-xs">
-                                            {notifications.length}
-                                        </span>
-                                    )}
-                                </button>
-
-                                {showNotifications && (
-                                    <div className="absolute right-0 mt-2 w-72 sm:w-80 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 max-w-[calc(100vw-2rem)]">
-                                        <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
-                                            <h3 className="font-semibold text-gray-800">Notifications</h3>
-                                        </div>
-                                        <div className="p-4 space-y-3 max-h-64 overflow-y-auto">
-                                            {notifications.length === 0 ? (
-                                                <div className="text-center py-4 text-gray-500">
-                                                    <FaBell className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                                                    <p className="text-sm">No new notifications</p>
-                                                </div>
-                                            ) : (
-                                                notifications.map((notification) => (
-                                                    <NotificationItem
-                                                        key={notification.id}
-                                                        color={
-                                                            notification.type === 'success' ? 'green' :
-                                                                notification.type === 'warning' ? 'yellow' :
-                                                                    notification.type === 'error' ? 'red' : 'blue'
-                                                        }
-                                                        title={notification.title}
-                                                        message={notification.message}
-                                                        time={new Date(notification.timestamp).toLocaleString()}
-                                                    />
-                                                ))
-                                            )}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-
-                            <div className="flex items-center space-x-2 sm:space-x-3 bg-gradient-to-r from-blue-50 to-indigo-50 px-2 sm:px-4 py-2 rounded-lg">
-                                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <FaUserShield className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                                </div>
-                                <div className="hidden sm:block">
-                                    <p className="text-sm font-medium text-gray-800">Admin User</p>
-                                    <p className="text-xs text-gray-500">Administrator</p>
-                                </div>
-                            </div>
-                    </div>
-
-                    {/* Bottom Row: Page Title */}
                     <div>
                         <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 capitalize bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                             {activeTab}
