@@ -1860,71 +1860,69 @@ const AdminDashboard = () => {
             {/* Enhanced Sidebar */}
             <div className="w-full md:w-64 lg:w-72 bg-white shadow-xl border-r border-gray-200 flex flex-col md:h-screen overflow-y-auto">
                 <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-blue-600 to-indigo-600 flex-shrink-0">
-                    <h1 className="text-2xl font-bold text-white">ShopEasy Admin</h1>
-                    <p className="text-blue-100 text-sm mt-1">Management Dashboard</p>
-                </div>
+                    <div className="flex items-start justify-between mb-4 md:mb-0">
+                        <div className="flex-1">
+                            <h1 className="text-2xl font-bold text-white">ShopEasy Admin</h1>
+                            <p className="text-blue-100 text-sm mt-1">Management Dashboard</p>
+                        </div>
 
-                {/* Notification and Admin User Section - Mobile Only */}
-                <div className="p-4 bg-white md:hidden space-y-4">
-                    {/* Notification Bell - Standalone */}
-                    <div className="relative">
-                        <button
-                            onClick={() => setShowNotifications(!showNotifications)}
-                            className="p-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-200 relative shadow-sm hover:shadow-md"
-                        >
-                            <FaBell className="w-5 h-5" />
-                            {notifications.length > 0 && (
-                                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse font-semibold shadow-lg">
-                                    {notifications.length}
-                                </span>
+                        {/* Notification Bell - Mobile Only in Header */}
+                        <div className="relative md:hidden">
+                            <button
+                                onClick={() => setShowNotifications(!showNotifications)}
+                                className="p-2 text-white hover:bg-white/20 rounded-full transition-all duration-200 relative"
+                            >
+                                <FaBell className="w-5 h-5" />
+                                {notifications.length > 0 && (
+                                    <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse font-semibold shadow-lg">
+                                        {notifications.length}
+                                    </span>
+                                )}
+                            </button>
+
+                            {showNotifications && (
+                                <div className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 max-w-[calc(100vw-2rem)]">
+                                    <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
+                                        <h3 className="font-semibold text-gray-800">Notifications</h3>
+                                    </div>
+                                    <div className="p-4 space-y-3 max-h-64 overflow-y-auto">
+                                        {notifications.length === 0 ? (
+                                            <div className="text-center py-4 text-gray-500">
+                                                <FaBell className="w-8 h-8 mx-auto mb-2 opacity-50" />
+                                                <p className="text-sm">No new notifications</p>
+                                            </div>
+                                        ) : (
+                                            notifications.map((notification) => (
+                                                <NotificationItem
+                                                    key={notification.id}
+                                                    color={
+                                                        notification.type === 'success' ? 'green' :
+                                                            notification.type === 'warning' ? 'yellow' :
+                                                                notification.type === 'error' ? 'red' : 'blue'
+                                                    }
+                                                    title={notification.title}
+                                                    message={notification.message}
+                                                    time={new Date(notification.timestamp).toLocaleString()}
+                                                />
+                                            ))
+                                        )}
+                                    </div>
+                                </div>
                             )}
-                        </button>
-
-                        {showNotifications && (
-                            <div className="absolute left-0 mt-2 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 max-w-[calc(100vw-2rem)]">
-                                <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
-                                    <h3 className="font-semibold text-gray-800">Notifications</h3>
-                                </div>
-                                <div className="p-4 space-y-3 max-h-64 overflow-y-auto">
-                                    {notifications.length === 0 ? (
-                                        <div className="text-center py-4 text-gray-500">
-                                            <FaBell className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                                            <p className="text-sm">No new notifications</p>
-                                        </div>
-                                    ) : (
-                                        notifications.map((notification) => (
-                                            <NotificationItem
-                                                key={notification.id}
-                                                color={
-                                                    notification.type === 'success' ? 'green' :
-                                                        notification.type === 'warning' ? 'yellow' :
-                                                            notification.type === 'error' ? 'red' : 'blue'
-                                                }
-                                                title={notification.title}
-                                                message={notification.message}
-                                                time={new Date(notification.timestamp).toLocaleString()}
-                                            />
-                                        ))
-                                    )}
-                                </div>
-                            </div>
-                        )}
+                        </div>
                     </div>
 
-                    {/* Admin User Card */}
-                    <div className="flex items-center space-x-3 bg-gradient-to-r from-blue-50 to-indigo-50 px-4 py-3 rounded-xl border border-blue-100 shadow-sm">
-                        <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
-                            <FaUserShield className="w-6 h-6 text-white" />
+                    {/* Admin User Card - Mobile Only in Header */}
+                    <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm px-3 py-2 rounded-lg md:hidden">
+                        <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
+                            <FaUserShield className="w-5 h-5 text-blue-600" />
                         </div>
                         <div className="flex-1 min-w-0">
-                            <p className="text-sm font-semibold text-gray-800 truncate">Admin User</p>
-                            <p className="text-xs text-gray-600">Administrator</p>
+                            <p className="text-sm font-semibold text-white truncate">Admin User</p>
+                            <p className="text-xs text-blue-100">Administrator</p>
                         </div>
                     </div>
                 </div>
-
-                {/* Divider - Mobile Only */}
-                <div className="border-t border-gray-200 md:hidden"></div>
 
                 <nav className="flex-1 overflow-y-auto mt-6 px-4 pb-4">
                     {sidebarItems.map((item) => {
