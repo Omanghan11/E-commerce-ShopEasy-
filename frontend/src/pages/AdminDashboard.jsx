@@ -1856,9 +1856,9 @@ const AdminDashboard = () => {
     }
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex">
+        <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col md:flex-row overflow-x-hidden">
             {/* Enhanced Sidebar */}
-            <div className="w-72 bg-white shadow-xl border-r border-gray-200 flex flex-col h-screen">
+            <div className="w-full md:w-64 lg:w-72 bg-white shadow-xl border-r border-gray-200 flex flex-col md:h-screen overflow-y-auto">
                 <div className="p-6 border-b border-gray-200 bg-gradient-to-r from-blue-600 to-indigo-600 flex-shrink-0">
                     <h1 className="text-2xl font-bold text-white">ShopEasy Admin</h1>
                     <p className="text-blue-100 text-sm mt-1">Management Dashboard</p>
@@ -1895,15 +1895,15 @@ const AdminDashboard = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col">
+            <div className="flex-1 flex flex-col w-full min-w-0">
                 {/* Enhanced Header */}
-                <header className="bg-white shadow-sm border-b border-gray-200 px-6 py-4">
-                    <div className="flex justify-between items-center">
+                <header className="bg-white shadow-sm border-b border-gray-200 px-4 sm:px-6 py-4">
+                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                         <div>
-                            <h2 className="text-3xl font-bold text-gray-800 capitalize bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 capitalize bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                                 {activeTab}
                             </h2>
-                            <p className="text-gray-600 mt-1">Manage your {activeTab} efficiently</p>
+                            <p className="text-gray-600 mt-1 text-sm sm:text-base">Manage your {activeTab} efficiently</p>
                         </div>
 
                         <div className="flex items-center space-x-4">
@@ -1965,7 +1965,7 @@ const AdminDashboard = () => {
                 </header>
 
                 {/* Content Area */}
-                <main className="flex-1 p-6 overflow-y-auto">
+                <main className="flex-1 p-4 sm:p-6 overflow-y-auto overflow-x-hidden">
                     {error && (
                         <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
                             {error}
