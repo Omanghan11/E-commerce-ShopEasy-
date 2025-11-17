@@ -21,6 +21,9 @@ export const ProductProvider = ({ children }) => {
         const token = localStorage.getItem('token');
         if (!token) {
           console.warn("No authentication token found. Cannot fetch cart/wishlist.");
+          // Clear cart and wishlist if no token
+          dispatch({ type: "SET_CART", payload: [] });
+          dispatch({ type: "SET_WISHLIST", payload: [] });
           return;
         }
 
@@ -36,6 +39,8 @@ export const ProductProvider = ({ children }) => {
 
         if (cartRes.status === 401 || wishlistRes.status === 401) {
             console.error("❌ Unauthorized. Please log in.");
+            dispatch({ type: "SET_CART", payload: [] });
+            dispatch({ type: "SET_WISHLIST", payload: [] });
             return;
         }
 
@@ -52,8 +57,30 @@ export const ProductProvider = ({ children }) => {
         console.error("❌ Failed to fetch cart/wishlist:", err);
       }
     };
+    
     fetchData();
-  }, []);
+    
+    // Listen for storage changes (when user logs in/out in another tab or after login)
+    const handleStorageChange = (e) => {
+      if (e.key === 'token') {
+        fetchData();
+      }
+    };
+    
+    window.addEventListener('storage', handleStorageChange);
+    
+    // Also listen for custom login event
+    const handleLogin = () => {
+      fetchData();
+    };
+    
+    window.addEventListener('user-login', handleLogin);
+    
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('user-login', handleLogin);
+    };
+  }, []); // Keep empty dependency array but add event listeners
 
   // -------- CART ACTIONS --------
   const addToCart = async (product, quantity = 1) => {

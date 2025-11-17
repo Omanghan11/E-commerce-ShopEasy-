@@ -70,6 +70,9 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("token", token);
     setUser(user);
     setIsAuthenticated(true);
+    
+    // Trigger cart/wishlist fetch
+    window.dispatchEvent(new Event('user-login'));
   };
 
   // Clear token + user on logout
