@@ -1865,9 +1865,9 @@ const AdminDashboard = () => {
                 </div>
 
                 {/* Notification and Admin User Section - Mobile Only */}
-                <div className="p-4 bg-white md:hidden">
-                    {/* Notification Bell */}
-                    <div className="relative mb-4">
+                <div className="p-4 bg-white md:hidden space-y-4">
+                    {/* Notification Bell - Standalone */}
+                    <div className="relative">
                         <button
                             onClick={() => setShowNotifications(!showNotifications)}
                             className="p-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-200 relative shadow-sm hover:shadow-md"
@@ -1912,7 +1912,7 @@ const AdminDashboard = () => {
                     </div>
 
                     {/* Admin User Card */}
-                    <div className="flex items-center space-x-3 bg-gradient-to-r from-blue-50 to-indigo-50 px-4 py-3 rounded-xl border border-blue-100 shadow-sm hover:shadow-md transition-shadow duration-200">
+                    <div className="flex items-center space-x-3 bg-gradient-to-r from-blue-50 to-indigo-50 px-4 py-3 rounded-xl border border-blue-100 shadow-sm">
                         <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center flex-shrink-0 shadow-md">
                             <FaUserShield className="w-6 h-6 text-white" />
                         </div>
