@@ -115,17 +115,25 @@ function Laptops() {
     <div className="min-h-screen text-black bg-gray-100 p-6">
       {/* Hero Section */}
       <div
-        className="text-center text-white py-20 mb-12 rounded-lg bg-cover bg-center"
-        style={{ backgroundImage: `url('${LaptopImage}')` }}
+        className="relative text-center text-white py-12 sm:py-16 md:py-20 mb-8 sm:mb-12 rounded-lg bg-cover bg-center overflow-hidden"
+        style={{ 
+          backgroundImage: `url('${LaptopImage}')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          minHeight: '250px'
+        }}
       >
-        <h1 className="text-4xl font-bold mb-4">Laptops</h1>
-        <p className="text-lg mb-6">Explore our range of laptops.</p>
-        <Link
-          to="/"
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
-        >
-          Go Back to Home
-        </Link>
+        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
+        <div className="relative z-10 px-4">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 drop-shadow-lg">Laptops</h1>
+          <p className="text-base sm:text-lg mb-4 sm:mb-6 drop-shadow-md">Explore our range of laptops.</p>
+          <Link
+            to="/"
+            className="inline-block px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+          >
+            Go Back to Home
+          </Link>
+        </div>
       </div>
 
       {/* Product Filter */}

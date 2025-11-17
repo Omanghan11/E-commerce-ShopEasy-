@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Dialog from '../Components/Dialog';
 import { useDialog } from '../hooks/useDialog';
+import './AdminDashboard.css';
 import {
     FaUsers,
     FaBox,
@@ -28,11 +29,13 @@ import {
     FaTicketAlt,
     FaComments,
     FaPaperPlane,
-    FaClock
+    FaClock,
+    FaBars
 } from 'react-icons/fa';
 
 const AdminDashboard = () => {
     const [activeTab, setActiveTab] = useState('dashboard');
+    const [sidebarOpen, setSidebarOpen] = useState(false);
     const { dialog, hideDialog, showConfirm } = useDialog();
 
     // Enhanced management states
