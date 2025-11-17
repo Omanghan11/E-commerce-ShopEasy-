@@ -1898,15 +1898,8 @@ const AdminDashboard = () => {
             <div className="flex-1 flex flex-col w-full min-w-0">
                 {/* Enhanced Header */}
                 <header className="bg-white shadow-sm border-b border-gray-200 px-4 sm:px-6 py-4">
-                    <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <div>
-                            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 capitalize bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                                {activeTab}
-                            </h2>
-                            <p className="text-gray-600 mt-1 text-sm sm:text-base">Manage your {activeTab} efficiently</p>
-                        </div>
-
-                        <div className="flex items-center space-x-2 sm:space-x-4 w-full sm:w-auto justify-end">
+                    {/* Top Row: Notifications and Admin User */}
+                    <div className="flex items-center justify-end space-x-2 sm:space-x-4 mb-4">
                             <div className="relative">
                                 <button
                                     onClick={() => setShowNotifications(!showNotifications)}
@@ -1960,7 +1953,14 @@ const AdminDashboard = () => {
                                     <p className="text-xs text-gray-500">Administrator</p>
                                 </div>
                             </div>
-                        </div>
+                    </div>
+
+                    {/* Bottom Row: Page Title */}
+                    <div>
+                        <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-800 capitalize bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+                            {activeTab}
+                        </h2>
+                        <p className="text-gray-600 mt-1 text-sm sm:text-base">Manage your {activeTab} efficiently</p>
                     </div>
                 </header>
 
@@ -3013,23 +3013,21 @@ const UsersContent = ({
 
     return (
         <div className="space-y-6">
-            <div className="flex justify-between items-center">
-                <div className="flex items-center space-x-4">
-                    <div className="relative">
-                        <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
-                        <input
-                            type="text"
-                            placeholder="Search users..."
-                            value={userSearchTerm}
-                            onChange={(e) => setUserSearchTerm(e.target.value)}
-                            className="pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
-                        />
-                    </div>
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 sm:gap-4">
+                <div className="relative flex-1 sm:flex-initial">
+                    <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                    <input
+                        type="text"
+                        placeholder="Search users..."
+                        value={userSearchTerm}
+                        onChange={(e) => setUserSearchTerm(e.target.value)}
+                        className="w-full sm:w-64 pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    />
                 </div>
 
                 <button
                     onClick={() => setShowUserAddModal(true)}
-                    className="flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg"
+                    className="flex items-center justify-center px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg whitespace-nowrap"
                 >
                     <FaPlus className="w-4 h-4 mr-2" />
                     Add User
@@ -3037,7 +3035,8 @@ const UsersContent = ({
             </div>
 
             <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
-                <table className="w-full">
+                <div className="overflow-x-auto">
+                    <table className="w-full min-w-[800px]">
                     <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
                         <tr>
                             <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
@@ -3080,46 +3079,47 @@ const UsersContent = ({
                                     </span>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <div className="flex items-center space-x-2">
+                                    <div className="flex items-center space-x-1 sm:space-x-2">
                                         <button
                                             onClick={() => handleViewUser(user)}
-                                            className="text-blue-600 hover:text-blue-900 p-2 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                                            className="text-blue-600 hover:text-blue-900 p-1.5 sm:p-2 hover:bg-blue-50 rounded-lg transition-colors duration-200"
                                             title="View Details"
                                         >
-                                            <FaEye className="w-4 h-4" />
+                                            <FaEye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                         </button>
                                         <button
                                             onClick={() => handleEditUser(user)}
-                                            className="text-green-600 hover:text-green-900 p-2 hover:bg-green-50 rounded-lg transition-colors duration-200"
+                                            className="text-green-600 hover:text-green-900 p-1.5 sm:p-2 hover:bg-green-50 rounded-lg transition-colors duration-200"
                                             title="Edit User"
                                         >
-                                            <FaEdit className="w-4 h-4" />
+                                            <FaEdit className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                         </button>
                                         <button
                                             onClick={() => handleBlockUser(user, user.status)}
                                             disabled={submitting}
-                                            className={`p-2 rounded-lg transition-colors duration-200 ${user.status === 'blocked'
+                                            className={`p-1.5 sm:p-2 rounded-lg transition-colors duration-200 ${user.status === 'blocked'
                                                 ? 'text-green-600 hover:text-green-900 hover:bg-green-50'
                                                 : 'text-orange-600 hover:text-orange-900 hover:bg-orange-50'
                                                 }`}
                                             title={user.status === 'blocked' ? 'Unblock User' : 'Block User'}
                                         >
-                                            {user.status === 'blocked' ? <FaUnlock className="w-4 h-4" /> : <FaLock className="w-4 h-4" />}
+                                            {user.status === 'blocked' ? <FaUnlock className="w-3.5 h-3.5 sm:w-4 sm:h-4" /> : <FaLock className="w-3.5 h-3.5 sm:w-4 sm:h-4" />}
                                         </button>
                                         <button
                                             onClick={() => handleDeleteUser(user.id || user._id)}
                                             disabled={submitting}
-                                            className="text-red-600 hover:text-red-900 p-2 hover:bg-red-50 rounded-lg transition-colors duration-200"
+                                            className="text-red-600 hover:text-red-900 p-1.5 sm:p-2 hover:bg-red-50 rounded-lg transition-colors duration-200"
                                             title="Delete User"
                                         >
-                                            <FaTrash className="w-4 h-4" />
+                                            <FaTrash className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                         </button>
                                     </div>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
-                </table>
+                    </table>
+                </div>
 
                 {filteredUsers.length === 0 && (
                     <div className="text-center py-8 text-gray-500">
@@ -3149,22 +3149,22 @@ const OrdersContent = ({ orders = [], onViewOrder, onEditOrder, searchTerm, setS
 
     return (
         <div className="space-y-6">
-            <div className="flex justify-between items-center">
-                <div className="flex items-center space-x-4">
-                    <div className="relative">
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 sm:gap-4">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 flex-1">
+                    <div className="relative flex-1 sm:flex-initial">
                         <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                         <input
                             type="text"
                             placeholder="Search orders..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 w-64"
+                            className="w-full sm:w-64 pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                     </div>
                     <select
                         value={statusFilter}
                         onChange={(e) => setStatusFilter(e.target.value)}
-                        className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        className="w-full sm:w-auto px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     >
                         <option>All Status</option>
                         <option>Pending</option>
@@ -3177,7 +3177,8 @@ const OrdersContent = ({ orders = [], onViewOrder, onEditOrder, searchTerm, setS
             </div>
 
             <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
-                <table className="w-full">
+                <div className="overflow-x-auto">
+                    <table className="w-full min-w-[800px]">
                     <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
                         <tr>
                             <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Order ID</th>
@@ -3206,27 +3207,28 @@ const OrdersContent = ({ orders = [], onViewOrder, onEditOrder, searchTerm, setS
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{order.date}</td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <div className="flex items-center space-x-2">
+                                    <div className="flex items-center space-x-1 sm:space-x-2">
                                         <button
                                             onClick={() => onViewOrder(order.id)}
-                                            className="text-blue-600 hover:text-blue-900 p-2 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                                            className="text-blue-600 hover:text-blue-900 p-1.5 sm:p-2 hover:bg-blue-50 rounded-lg transition-colors duration-200"
                                             title="View Order Details"
                                         >
-                                            <FaEye className="w-4 h-4" />
+                                            <FaEye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                         </button>
                                         <button
                                             onClick={() => onEditOrder(order.id)}
-                                            className="text-green-600 hover:text-green-900 p-2 hover:bg-green-50 rounded-lg transition-colors duration-200"
+                                            className="text-green-600 hover:text-green-900 p-1.5 sm:p-2 hover:bg-green-50 rounded-lg transition-colors duration-200"
                                             title="Edit Order Status"
                                         >
-                                            <FaEdit className="w-4 h-4" />
+                                            <FaEdit className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                         </button>
                                     </div>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
-                </table>
+                    </table>
+                </div>
             </div>
         </div>
     );
@@ -4624,7 +4626,8 @@ const TicketsContent = ({ tickets = [], handleViewTicket, handleTicketStatusChan
             </div>
 
             <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
-                <table className="w-full">
+                <div className="overflow-x-auto">
+                    <table className="w-full min-w-[900px]">
                     <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
                         <tr>
                             <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ticket</th>
@@ -4668,27 +4671,28 @@ const TicketsContent = ({ tickets = [], handleViewTicket, handleTicketStatusChan
                                     {new Date(ticket.createdAt).toLocaleDateString()}
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <div className="flex items-center space-x-2">
+                                    <div className="flex items-center space-x-1 sm:space-x-2">
                                         <button
                                             onClick={() => handleViewTicket(ticket)}
-                                            className="text-blue-600 hover:text-blue-900 p-2 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                                            className="text-blue-600 hover:text-blue-900 p-1.5 sm:p-2 hover:bg-blue-50 rounded-lg transition-colors duration-200"
                                             title="View Details"
                                         >
-                                            <FaEye className="w-4 h-4" />
+                                            <FaEye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                         </button>
                                         <button
                                             onClick={() => handleViewTicket(ticket)}
-                                            className="text-green-600 hover:text-green-900 p-2 hover:bg-green-50 rounded-lg transition-colors duration-200"
+                                            className="text-green-600 hover:text-green-900 p-1.5 sm:p-2 hover:bg-green-50 rounded-lg transition-colors duration-200"
                                             title="Reply"
                                         >
-                                            <FaComments className="w-4 h-4" />
+                                            <FaComments className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                         </button>
                                     </div>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
-                </table>
+                    </table>
+                </div>
 
                 {tickets.length === 0 && (
                     <div className="text-center py-12">
