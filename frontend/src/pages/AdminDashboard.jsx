@@ -1906,22 +1906,22 @@ const AdminDashboard = () => {
                             <p className="text-gray-600 mt-1 text-sm sm:text-base">Manage your {activeTab} efficiently</p>
                         </div>
 
-                        <div className="flex items-center space-x-4">
+                        <div className="flex items-center space-x-2 sm:space-x-4 w-full sm:w-auto justify-end">
                             <div className="relative">
                                 <button
                                     onClick={() => setShowNotifications(!showNotifications)}
-                                    className="p-3 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors duration-200 relative"
+                                    className="p-2 sm:p-3 text-gray-600 hover:text-gray-800 hover:bg-gray-100 rounded-full transition-colors duration-200 relative"
                                 >
-                                    <FaBell className="w-5 h-5" />
+                                    <FaBell className="w-4 h-4 sm:w-5 sm:h-5" />
                                     {notifications.length > 0 && (
-                                        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center animate-pulse">
+                                        <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center animate-pulse text-[10px] sm:text-xs">
                                             {notifications.length}
                                         </span>
                                     )}
                                 </button>
 
                                 {showNotifications && (
-                                    <div className="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 z-50">
+                                    <div className="absolute right-0 mt-2 w-72 sm:w-80 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 max-w-[calc(100vw-2rem)]">
                                         <div className="p-4 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
                                             <h3 className="font-semibold text-gray-800">Notifications</h3>
                                         </div>
@@ -1951,11 +1951,11 @@ const AdminDashboard = () => {
                                 )}
                             </div>
 
-                            <div className="flex items-center space-x-3 bg-gradient-to-r from-blue-50 to-indigo-50 px-4 py-2 rounded-lg">
-                                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center">
-                                    <FaUserShield className="w-5 h-5 text-white" />
+                            <div className="flex items-center space-x-2 sm:space-x-3 bg-gradient-to-r from-blue-50 to-indigo-50 px-2 sm:px-4 py-2 rounded-lg">
+                                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <FaUserShield className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
                                 </div>
-                                <div>
+                                <div className="hidden sm:block">
                                     <p className="text-sm font-medium text-gray-800">Admin User</p>
                                     <p className="text-xs text-gray-500">Administrator</p>
                                 </div>
@@ -2573,22 +2573,22 @@ const ProductsContent = ({ products, showAddModal, setShowAddModal, searchTerm, 
     return (
         <div className="space-y-6">
             {/* Header Actions */}
-            <div className="flex justify-between items-center">
-                <div className="flex items-center space-x-4">
-                    <div className="relative">
+            <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 sm:gap-4">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 flex-1">
+                    <div className="relative flex-1 sm:flex-initial">
                         <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                         <input
                             type="text"
                             placeholder="Search products..."
                             value={searchTerm}
                             onChange={(e) => setSearchTerm(e.target.value)}
-                            className="pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent w-64"
+                            className="w-full sm:w-64 pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                         />
                     </div>
                     <div className="relative filter-dropdown-container">
                         <button 
                             onClick={() => setShowFilterDropdown(!showFilterDropdown)}
-                            className={`flex items-center px-4 py-3 border rounded-lg transition-colors duration-200 ${
+                            className={`flex items-center justify-center w-full sm:w-auto px-4 py-3 border rounded-lg transition-colors duration-200 ${
                                 hasActiveFilters 
                                     ? 'border-blue-500 bg-blue-50 text-blue-700' 
                                     : 'border-gray-300 hover:bg-gray-50'
@@ -2605,7 +2605,7 @@ const ProductsContent = ({ products, showAddModal, setShowAddModal, searchTerm, 
 
                         {/* Filter Dropdown */}
                         {showFilterDropdown && (
-                            <div className="absolute top-full left-0 mt-2 w-80 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                            <div className="fixed sm:absolute top-1/2 left-1/2 sm:top-full sm:left-0 transform -translate-x-1/2 -translate-y-1/2 sm:translate-x-0 sm:translate-y-0 sm:mt-2 w-[90vw] max-w-md sm:w-80 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
                                 <div className="p-4 border-b border-gray-200">
                                     <div className="flex items-center justify-between">
                                         <h3 className="text-lg font-semibold text-gray-900">Filters</h3>
@@ -2687,7 +2687,7 @@ const ProductsContent = ({ products, showAddModal, setShowAddModal, searchTerm, 
 
                 <button
                     onClick={() => setShowAddModal(true)}
-                    className="flex items-center px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl"
+                    className="flex items-center justify-center px-4 sm:px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 text-white rounded-lg hover:from-blue-700 hover:to-indigo-700 transition-all duration-200 shadow-lg hover:shadow-xl whitespace-nowrap"
                 >
                     <FaPlus className="w-4 h-4 mr-2" />
                     Add Product
@@ -2696,7 +2696,8 @@ const ProductsContent = ({ products, showAddModal, setShowAddModal, searchTerm, 
 
             {/* Products Table */}
             <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
-                <table className="w-full">
+                <div className="overflow-x-auto">
+                    <table className="w-full min-w-[800px]">
                     <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
                         <tr>
                             <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
@@ -2754,20 +2755,20 @@ const ProductsContent = ({ products, showAddModal, setShowAddModal, searchTerm, 
                                     </span>
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                    <div className="flex items-center space-x-2">
+                                    <div className="flex items-center space-x-1 sm:space-x-2">
                                         <button
                                             onClick={() => handleViewProduct(product.id)}
-                                            className="text-blue-600 hover:text-blue-900 p-2 hover:bg-blue-50 rounded-lg transition-colors duration-200"
+                                            className="text-blue-600 hover:text-blue-900 p-1.5 sm:p-2 hover:bg-blue-50 rounded-lg transition-colors duration-200"
                                             title="View Product"
                                         >
-                                            <FaEye className="w-4 h-4" />
+                                            <FaEye className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                         </button>
                                         <button
                                             onClick={() => handleEditProduct(product.id)}
-                                            className="text-green-600 hover:text-green-900 p-2 hover:bg-green-50 rounded-lg transition-colors duration-200"
+                                            className="text-green-600 hover:text-green-900 p-1.5 sm:p-2 hover:bg-green-50 rounded-lg transition-colors duration-200"
                                             title="Edit Product"
                                         >
-                                            <FaEdit className="w-4 h-4" />
+                                            <FaEdit className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                         </button>
                                         <button
                                             onClick={() => {
@@ -2777,17 +2778,18 @@ const ProductsContent = ({ products, showAddModal, setShowAddModal, searchTerm, 
                                                     'Delete Product'
                                                 );
                                             }}
-                                            className="text-red-600 hover:text-red-900 p-2 hover:bg-red-50 rounded-lg transition-colors duration-200"
+                                            className="text-red-600 hover:text-red-900 p-1.5 sm:p-2 hover:bg-red-50 rounded-lg transition-colors duration-200"
                                             title="Delete Product"
                                         >
-                                            <FaTrash className="w-4 h-4" />
+                                            <FaTrash className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                                         </button>
                                     </div>
                                 </td>
                             </tr>
                         ))}
                     </tbody>
-                </table>
+                    </table>
+                </div>
 
                 {/* Enhanced Pagination */}
                 {productsPagination && productsPagination.totalProducts > 0 && (
