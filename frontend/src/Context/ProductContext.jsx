@@ -164,6 +164,20 @@ export const ProductProvider = ({ children }) => {
     }
   };
 
+  // -------- CLEAR CART & WISHLIST (for logout) --------
+  const clearCart = () => {
+    dispatch({ type: "SET_CART", payload: [] });
+  };
+
+  const clearWishlist = () => {
+    dispatch({ type: "SET_WISHLIST", payload: [] });
+  };
+
+  const clearAll = () => {
+    clearCart();
+    clearWishlist();
+  };
+
   // -------- HELPERS --------
   const isInCart = (productId) => state.cartItems.some(item => item.productId === productId || item._id === productId);
   const isInWishlist = (productId) => state.wishlistItems.some(item => item.productId._id === productId || item._id === productId);
@@ -186,6 +200,9 @@ export const ProductProvider = ({ children }) => {
         updateCartItemQuantity,
         addToWishlist,
         removeFromWishlist,
+        clearCart,
+        clearWishlist,
+        clearAll,
         // Selectors
         isInCart,
         isInWishlist,

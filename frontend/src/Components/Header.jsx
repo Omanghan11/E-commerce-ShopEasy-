@@ -22,7 +22,7 @@ function Header() {
   const [showNotifications, setShowNotifications] = useState(false);
 
   const { user, isAuthenticated, logout } = useAuth();
-  const { wishlistItems, cartItems } = useContext(ProductContext);
+  const { wishlistItems, cartItems, clearAll } = useContext(ProductContext);
   const { notifications, getUnreadCount, markAsRead, markAllAsRead } = useNotifications();
   const navigate = useNavigate();
 
@@ -37,6 +37,7 @@ function Header() {
 
   const handleLogout = () => {
     logout();
+    clearAll(); // Clear cart and wishlist
     setIsUserDropdownOpen(false);
     navigate("/");
   };

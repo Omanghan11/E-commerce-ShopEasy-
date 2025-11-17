@@ -26,6 +26,18 @@ export const AuthProvider = ({ children }) => {
 
         if (res.ok) {
           const userData = await res.json();
+          
+          // Check if user is blocked
+          if (userData.status === 'blocked') {
+            console.warn('User is blocked. Logging out...');
+            localStorage.removeItem("token");
+            setUser(null);
+            setIsAuthenticated(false);
+            // Redirect to blocked page
+            window.location.href = '/support-blocked';
+            return;
+          }
+          
           setUser(userData);
           setIsAuthenticated(true);
         } else {
@@ -42,7 +54,16 @@ export const AuthProvider = ({ children }) => {
     };
 
     fetchUser();
-  }, [token]);
+    
+    // Check user status every 30 seconds if authenticated
+    const interval = setInterval(() => {
+      if (token && isAuthenticated) {
+        fetchUser();
+      }
+    }, 30000); // 30 seconds
+
+    return () => clearInterval(interval);
+  }, [token, isAuthenticated]);
 
   // Save token + user on login
   const login = (token, user) => {
